@@ -27,6 +27,7 @@ const DynamicallyAddingFormItems: React.FC = () => {
   return (
     <Form name="dynamic_form_item" {...formItemLayoutWithOutLabel} onFinish={onFinish}>
       <Form.List
+        initialValue={['紫竹']}
         name="names"
         rules={[
           {
@@ -38,60 +39,62 @@ const DynamicallyAddingFormItems: React.FC = () => {
           },
         ]}
       >
-        {(fields, { add, remove }, { errors }) => (
-          <>
-            {fields.map((field, index) => (
-              <Form.Item
-                {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                label={index === 0 ? 'Passengers' : ''}
-                required={false}
-                key={field.key}
-              >
+        {(fields, { add, remove }, { errors }) => {
+          return (
+            <>
+              {fields.map((field, index) => (
                 <Form.Item
-                  {...field}
-                  validateTrigger={['onChange', 'onBlur']}
-                  rules={[
-                    {
-                      required: true,
-                      whitespace: true,
-                      message: "Please input passenger's name or delete this field.",
-                    },
-                  ]}
-                  noStyle
+                  {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                  label={index === 0 ? 'Passengers' : ''}
+                  required={false}
+                  key={field.key}
                 >
-                  <Input placeholder="passenger name" style={{ width: '60%' }} />
+                  <Form.Item
+                    {...field}
+                    validateTrigger={['onChange', 'onBlur']}
+                    rules={[
+                      {
+                        required: true,
+                        whitespace: true,
+                        message: "Please input passenger's name or delete this field.",
+                      },
+                    ]}
+                    noStyle
+                  >
+                    <Input placeholder="passenger name" style={{ width: '60%' }} />
+                  </Form.Item>
+                  {fields.length > 1 ? (
+                    <MinusCircleOutlined
+                      className="dynamic-delete-button"
+                      onClick={() => remove(field.name)}
+                    />
+                  ) : null}
                 </Form.Item>
-                {fields.length > 1 ? (
-                  <MinusCircleOutlined
-                    className="dynamic-delete-button"
-                    onClick={() => remove(field.name)}
-                  />
-                ) : null}
+              ))}
+              <Form.Item>
+                <Button
+                  type="dashed"
+                  onClick={() => add()}
+                  style={{ width: '60%' }}
+                  icon={<PlusOutlined />}
+                >
+                  Add field
+                </Button>
+                <Button
+                  type="dashed"
+                  onClick={() => {
+                    add('The head item', 0);
+                  }}
+                  style={{ width: '60%', marginTop: '20px' }}
+                  icon={<PlusOutlined />}
+                >
+                  Add field at head
+                </Button>
+                <Form.ErrorList errors={errors} />
               </Form.Item>
-            ))}
-            <Form.Item>
-              <Button
-                type="dashed"
-                onClick={() => add()}
-                style={{ width: '60%' }}
-                icon={<PlusOutlined />}
-              >
-                Add field
-              </Button>
-              <Button
-                type="dashed"
-                onClick={() => {
-                  add('The head item', 0);
-                }}
-                style={{ width: '60%', marginTop: '20px' }}
-                icon={<PlusOutlined />}
-              >
-                Add field at head
-              </Button>
-              <Form.ErrorList errors={errors} />
-            </Form.Item>
-          </>
-        )}
+            </>
+          )
+        }}
       </Form.List>
       <Form.Item>
         <Button type="primary" htmlType="submit">
