@@ -38,6 +38,11 @@ export default defineConfig({
           path: '/form/basic',
           component: './Form/BasicForm',
         },
+        {
+          name: '表单方法调用',
+          path: '/form/method',
+          component: './Form/FormMethod',
+        },
       ],
     },
   ],
