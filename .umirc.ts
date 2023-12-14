@@ -29,7 +29,17 @@ export default defineConfig({
       path: '/table',
       component: './Table',
     },
+    {
+      name: '表单',
+      path: '/form',
+      routes: [
+        {
+          name: '基础表单',
+          path: '/form/basic',
+          component: './Form/BasicForm',
+        },
+      ],
+    },
   ],
   npmClient: 'pnpm',
 });
-
