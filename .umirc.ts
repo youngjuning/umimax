@@ -43,6 +43,11 @@ export default defineConfig({
           path: '/form/method',
           component: './Form/FormMethod',
         },
+        {
+          name: '非阻塞校验',
+          path: '/form/non-blocking-validate',
+          component: './Form/NonBlockingValidate',
+        },
       ],
     },
   ],

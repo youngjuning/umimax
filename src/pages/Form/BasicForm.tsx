@@ -11,7 +11,7 @@ const BasicForm: React.FC = () => {
   };
 
   return (
-    <div style={{ width: "60%" }}>
+    <div>
       <h2>基础表单</h2>
       <p>基本的表单数据域控制展示，包含布局、初始化、验证、提交。</p>
       <Form
