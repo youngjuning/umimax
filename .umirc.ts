@@ -48,6 +48,16 @@ export default defineConfig({
           path: '/form/non-blocking-validate',
           component: './Form/NonBlockingValidate',
         },
+        {
+          name: '字段监听 Hooks',
+          path: '/form/useWatch',
+          component: './Form/UseWatch',
+        },
+        {
+          name: '动态增减表单项',
+          path: '/form/dynamically-adding-form-items',
+          component: './Form/DynamicallyAddingFormItems'
+        }
       ],
     },
   ],
